@@ -25,25 +25,33 @@
       <hr class="my-4">
       <div>
         <h2 id="coordinates" class="lead">coordinates</h2>
-        <h3 id="currency" class="lead">currency</h3>
-        for current currency exchange click<button type="button" onclick="currencyAPI()" class="btn btn-info btn-sm">here</button>
-        <h3 id="currentChange">currentChange</h3>
+        <h2 id="currency" class="lead">currency</h2>
+        <h2 class="lead">Current currency exchange is</h2>
+        <h2 class="lead" style="float: left;">1 USD =  </h2>
+        <h3 class="lead" id="currentChange" style="float: left;">?????</h3>
+        <h2 class="lead" id="isoCode2" >???</h2>
       </div>
+      <br>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">USD</span>
         </div>
-        <input type="text" class="form-control" aria-label="Username" >
+        <input type="number" id="USD" class="form-control" aria-label="Username" required>
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span id="isoCode" class="input-group-text" id="basic-addon1">@</span>
         </div>
-        <input type="text" class="form-control" aria-label="Username">
+        <input type="number" id="@" class="form-control" aria-label="Username" required>
       </div>
-
+      <div class="input-group mb-3">
+      <button type="button" onclick="calculate()" class="btn btn-info btn-sm">Calculate</button>
+      </div>
   </div>
-</div>
+  <div class="jumbotron">
+    <h1 class="display-4">Current Weather!</h1>
+    <div id="openweathermap-widget-5" style="width: auto;"></div>
+  </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
