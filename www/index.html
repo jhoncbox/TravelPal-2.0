@@ -5,64 +5,87 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- I'm using Bootstrap 4 for this project -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Travel Pal</title>
   </head>
 <body>
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="res/icon/wp8/travelpal.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    Travel Pal  
-  </a>
-</nav>
-<div class="container-fluid">
-  <div id="deviceready" class="jumbotron">
-      <h1 class="display-4">Welcome Traveller</h1>
-      <button type="button" onclick="getLocation();openGateAPI(); currencyAPI();" style="float: right;" class="btn btn-info btn-sm">Refresh Location</button>
-      <p class="event listening">Connecting to Device</p>
-      <p class="event received">Travel Pal Ready</p>
-      <hr class="my-4">
-      <div>
-        <h2 id="coordinates" class="lead">coordinates</h2>
-        <h2 id="currency" class="lead">currency</h2>
-        <h2 class="lead">Current currency exchange is</h2>
-        <h2 class="lead" style="float: left;">1 USD =  </h2>
-        <h3 class="lead" id="currentChange" style="float: left;">?????</h3>
-        <h2 class="lead" id="isoCode2" >???</h2>
-      </div>
-      <br>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">USD</span>
+  <!-- this class bar allows me to place the logo and Name on the top right of the App
+        as a link for future uses-->
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="res/icon/wp8/travelpal.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Travel Pal  
+    </a>
+  </nav>
+  <!-- this div class act as a container with set styles for the divs inside -->
+  <div class="container-fluid">
+    <div id="deviceready" class="jumbotron">
+        <h1 class="display-4">Welcome Traveller</h1>
+        <!-- refresh button re-run all the functions to update the user location -->
+        <button type="button" onclick="getLocation();openGateAPI();currencyAPI();getWeather()" style="float: right;" class="btn btn-info btn-sm">Refresh Location</button>
+        <p class="event listening">Connecting to Device</p>
+        <p class="event received">Travel Pal Ready</p>
+        <hr class="my-4">
+        <div>
+          <!-- front end showing the current location -->
+          <h2 id="coordinates" class="lead">coordinates</h2>
+          <!-- front end showing the local currency -->
+          <h2 id="currency" class="lead">currency</h2>
+          <h2 class="lead">Current currency exchange is</h2>
+          <!-- showing the current exchange from US Dollar 
+           getting de amount and the isoCode from the back end-->
+          <h2 class="lead" style="float: left;">1 USD =  </h2>
+          <h3 class="lead" id="currentChange" style="float: left;">?????</h3>
+          <h2 class="lead" id="isoCode2" >???</h2>
         </div>
-        <input type="number" id="USD" class="form-control" aria-label="Username" required>
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span id="isoCode" class="input-group-text" id="basic-addon1">@</span>
+        <br>
+        <!-- Group of input for the currency calculation -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">USD</span>
+          </div>
+          <input type="number" id="USD" class="form-control" aria-label="Username" required>
         </div>
-        <input type="number" id="@" class="form-control" aria-label="Username" required>
-      </div>
-      <div class="input-group mb-3">
-      <button type="button" onclick="calculate()" class="btn btn-info btn-sm">Calculate</button>
-      </div>
-  </div>
-  <div class="jumbotron">
-    <h1 class="display-4">Currently where you are!</h1>
-    <div id="openweathermap-widget-5"></div>
-    <br></br>
-    <h2 class="lead">You can look at your surroundings by clicking the map</h2>
-    <div id="map"> jamon </div>
-  </div>
-  <div class="jumbotron">
-    <h1 class="display-4">Save where you've been!</h1>
-    <button type="button" onclick="saveFile()" class="btn btn-info btn-sm">Save This Place!</button>
-    <br></br>
-    <h2 class="lead">so far!</h2>
-    <br></br>
-    <h2 id="fileSaved" class="lead"></h2>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <!-- this placeholder then is used to show the current currency IsoCode -->
+            <span id="isoCode" class="input-group-text" id="basic-addon1">@</span>
+          </div>
+          <input type="number" id="@" class="form-control" aria-label="Username" required>
+        </div>
+        <div class="input-group mb-3">
+          <!-- button to run the Calculation function from the back end -->
+          <button type="button" onclick="calculate()" class="btn btn-info btn-sm">Calculate</button>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <!-- this is the place holder for the weather widget function taken from the Open Weather API  -->
+        <h1 class="display-4">Currently where you are!</h1>
+        <div id="openweathermap-widget-5"></div>
+        <br></br>
+        <h2 class="lead">You can look at your surroundings by clicking the map</h2>
+        <!-- place holder for the Google Map API -->
+        <div id="map"> </div>
+    </div>
+    <div class="jumbotron">
+        <!-- button and place holder for the Picture function-->
+        <h1 class="display-4">Save where you've been!</h1>
+        <button type="button" onclick="pics()" class="btn btn-info btn-sm">take a picture!</button>
+        <div>
+            <img id="image" height="50%" width="50%"></img>
+        </div>
+        <button type="button" onclick="savePic()" class="btn btn-info btn-sm">Save the picture!</button>
+        <h2 id="showImages" class="lead"></h2>
+        <br></br>
+        <!-- button and place holder for the Save File function-->
+        <button type="button" onclick="saveFile()" class="btn btn-info btn-sm">Save This Place!</button>
+        <br></br>
+        <h2 class="lead">so far!</h2>
+        <br></br>
+        <h2 id="fileSaved" class="lead"></h2>
+    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
