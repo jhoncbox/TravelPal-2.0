@@ -152,8 +152,13 @@ function getWeather(){
         var response = http.responseText;
         var responseJSON = JSON.parse(response);
         climage = responseJSON.weather[0].description;  
+        var mainClimage = responseJSON.weather[0].main;
         var cityId = responseJSON.id;
-        // after getting the CityId we call the widget from the Open Weather API
+        // placing information into a placeholder in the front page
+        document.getElementById("showWeather").innerHTML = mainClimage + ", " + climage
+        // after getting the CityId we call the widget from the Open Weather maps API
+        window.myWidgetParam ? 
+        window.myWidgetParam : 
         window.myWidgetParam = [];  
         window.myWidgetParam.push({
             id: 5,
@@ -167,12 +172,14 @@ function getWeather(){
             var script = document.createElement('script');
             script.async = true;
             script.charset = "utf-8";
-            script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+            script.src = "https://openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(script, s);  
         })();
     };
 };
+
+
 // --------------------------------------------------------------
 // Function File Saver
 function saveFile(){
